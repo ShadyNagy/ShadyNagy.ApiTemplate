@@ -7,7 +7,7 @@
     <authors>Shady Nagy</authors>
     <description>
       The Clean Architecture Solution Template popularized by Steve @ardalis Smith. Provides a great starting point for modern and/or DDD solutions built with .NET 6 and C# 10.
-      Features zero tight coupling to database or data access technology.
+      Features zero tight coupling to database or data access technology. This template based on my friend Template Ardalis.CleanArchitecture.
     </description>
     <language>en-US</language>
     <license type="expression">MIT</license>
