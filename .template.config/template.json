@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Shady Nagy",
+  "classifications": [
+    "Web",
+    "ASP.NET",
+    "Clean Architecture",
+    "Endpoints",
+    "Ardalis"
+  ],
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "identity": "ShadyNagy.ApiTemplate",
+  "name": "ASP.NET Clean Architecture Endpoints Solution",
+  "shortName": "clean-arch",
+  "sourceName": "ShadyNagy.ApiTemplate",
+  "preferNameDirectory": true
+}
