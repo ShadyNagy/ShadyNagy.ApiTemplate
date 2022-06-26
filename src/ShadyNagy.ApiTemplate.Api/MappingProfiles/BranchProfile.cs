@@ -6,12 +6,12 @@ namespace ShadyNagy.ApiTemplate.Api.MappingProfiles;
 
 public class BranchProfile : Profile
 {
-    public BranchProfile()
-    {
-        CreateMap<Branch, BranchDto>()
-          .ForPath(dest => dest.CityName,
-          opt => opt.MapFrom(source => source.City.Name));
-        CreateMap<BranchDto, Branch>();
-    }
+  public BranchProfile()
+  {
+    CreateMap<Branch, BranchDto>()
+      .ForPath(dest => dest.CityName,
+      opt => opt.MapFrom(source => source.City.Name));
+    CreateMap<BranchDto, Branch>();
+  }
 }
 

@@ -6,10 +6,10 @@ namespace ShadyNagy.ApiTemplate.Api.MappingProfiles;
 
 public class CityProfile : Profile
 {
-    public CityProfile()
-    {
-        CreateMap<City, CityDto>();
-        CreateMap<CityDto, City>();
-    }
+  public CityProfile()
+  {
+    CreateMap<City, CityDto>();
+    CreateMap<CityDto, City>();
+  }
 }
 

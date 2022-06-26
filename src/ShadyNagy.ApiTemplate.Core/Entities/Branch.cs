@@ -10,5 +10,5 @@ public class Branch : BaseEntity<int>, IAggregateRoot
   public string? Phone { get; set; }
   public string? Email { get; set; }
   public int CityId { get; set; }
-  public virtual City City { get; set; } = new City();  
+  public virtual City City { get; set; } = new City();
 }

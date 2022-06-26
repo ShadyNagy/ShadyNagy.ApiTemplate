@@ -6,10 +6,10 @@ namespace ShadyNagy.ApiTemplate.Api.MappingProfiles;
 
 public class CountryProfile : Profile
 {
-    public CountryProfile()
-    {
-        CreateMap<Country, CountryDto>();
-        CreateMap<CountryDto, Country>();
-    }
+  public CountryProfile()
+  {
+    CreateMap<Country, CountryDto>();
+    CreateMap<CountryDto, Country>();
+  }
 }
 

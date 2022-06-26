@@ -26,3 +26,8 @@ Generate Idempotent Update Script (for production)(from the ShadyNagy.ApiTemplat
 ```powershell
 dotnet ef migrations script -c AppDbContext -i -o migrate.sql -p ../ShadyNagy.ApiTemplate.Infrastructure/ShadyNagy.ApiTemplate.Infrastructure.csproj -s ShadyNagy.ApiTemplate.Api.csproj
 ```
+
+### Some CLI
+```powershell
+dotnet format whitespace
+```

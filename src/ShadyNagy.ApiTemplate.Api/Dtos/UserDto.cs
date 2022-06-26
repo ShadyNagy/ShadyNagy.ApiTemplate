@@ -10,4 +10,5 @@ public class UserDto
   public bool IsActive { get; set; }
   public UserType UserType { get; set; }
   public int UserInfoId { get; set; }
+  public UserInfoDto UserInfo { get; set; }
 }
