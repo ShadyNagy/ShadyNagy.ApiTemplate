@@ -31,8 +31,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 void OptionsAction(DbContextOptionsBuilder options)
 {
     options.EnableSensitiveDataLogging();
-    options.UseOracle(connectionString,
-      options => options.UseOracleSQLCompatibility("11"));
+    options.UseSqlServer(connectionString);
 }
 
 builder.Services.AddDbContext<AppDbContext>(OptionsAction);

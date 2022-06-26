@@ -41,11 +41,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
           .HasConversion<UserTypeConverter>()
           .IsRequired();
 
-        builder
-          .HasOne(t => t.UserInfo)
-          .WithOne(p => p.User)
-          .HasForeignKey("UserInfoId")
-          .OnDelete(DeleteBehavior.ClientSetNull);
-
     }
 }

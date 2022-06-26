@@ -32,5 +32,5 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
           .WithMany(p => p.Cities)
           .HasForeignKey(d => d.CountryId)
           .OnDelete(DeleteBehavior.ClientSetNull);
-    }
+  }
 }

@@ -10,4 +10,5 @@ public class City : BaseEntity<int>, IAggregateRoot
   public string? CountryId { get; set; }
   public virtual Country Country { get; set; } = new Country();
   public virtual List<Branch>? Branches { get; set; }
+  public virtual List<UserInfo>? UserInfos { get; set; }
 }
