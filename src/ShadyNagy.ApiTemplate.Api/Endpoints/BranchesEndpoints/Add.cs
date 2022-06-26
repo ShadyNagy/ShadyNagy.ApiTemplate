@@ -25,7 +25,7 @@ public class Add : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPut("/branches")]
+  [HttpPost("/branches")]
   [SwaggerOperation(
       Summary = "Adds a branch",
       Description = "Adds a branch",
