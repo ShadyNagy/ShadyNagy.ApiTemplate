@@ -17,7 +17,7 @@ public class UserTypeConverter : ValueConverter<UserType, string>
     {
       UserType.Customer => "C",
       UserType.Empoyee => "E",
-      // _ => null
+      _ => throw new System.NotImplementedException(),
     };
   }
 
@@ -27,7 +27,7 @@ public class UserTypeConverter : ValueConverter<UserType, string>
     {
       "C" => UserType.Customer,
       "E" => UserType.Empoyee,
-      // _ => KnowType.Unknown
+      _ => throw new System.NotImplementedException(),
     };
   }
 }
