@@ -1,0 +1,23 @@
+name: publish Ardalis.CleanArchitecture Template to nuget
+on:
+  push:
+    branches:
+      - main # Your default release branch
+    paths:
+      - 'ShadyNagy.ApiTemplate.nuspec'
+jobs:
+  publish:
+    name: list on nuget
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: '5.x'
+          
+      - name: Package the template
+        run: nuget pack ShadyNagy.ApiTemplate.nuspec -NoDefaultExcludes
+        
+      - name: Publish to nuget.org
+        run: nuget push ShadyNagy.ApiTemplate.*.nupkg -src https://api.nuget.org/v3/index.json ${{secrets.NUGET_API_KEY}}
