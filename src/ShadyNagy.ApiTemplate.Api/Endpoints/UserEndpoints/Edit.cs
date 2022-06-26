@@ -9,39 +9,39 @@ using ShadyNagy.ApiTemplate.Core.Specifications;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchesEndpoints;
+namespace ShadyNagy.ApiTemplate.Api.Endpoints.UserEndpoints;
 
 public class Edit : BaseAsyncEndpoint
-    .WithRequest<BranchDto>
-    .WithResponse<BranchDto>
+    .WithRequest<UserDto>
+    .WithResponse<UserDto>
 {
   private readonly IMapper _mapper;
-  private readonly IReadRepository<Branch> _readRepository;
-  private readonly IRepository<Branch> _repository;
+  private readonly IReadRepository<User> _readRepository;
+  private readonly IRepository<User> _repository;
 
-  public Edit(IMapper mapper, IReadRepository<Branch> readRepository, IRepository<Branch> repository)
+  public Edit(IMapper mapper, IReadRepository<User> readRepository, IRepository<User> repository)
   {
     _mapper = mapper;
     _readRepository = readRepository;
     _repository = repository;
   }
 
-  [HttpPut("/branches/{id:int}")]
+  [HttpPut("/users/{id:int}")]
   [SwaggerOperation(
-      Summary = "Edits a branch",
-      Description = "Edits a branch",
-      OperationId = "Branch.Edit",
-      Tags = new[] { "BranchesEndpoints" })
+      Summary = "Edits a User",
+      Description = "Edits a User",
+      OperationId = "User.Edit",
+      Tags = new[] { "UsersEndpoints" })
   ]
-  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] BranchDto branch, CancellationToken cancellationToken)
+  public override async Task<ActionResult<UserDto>> HandleAsync([FromBody] UserDto User, CancellationToken cancellationToken)
   {
-    var spec = new BranchByIdSpec(branch.Id);
+    var spec = new UserByIdSpec(User.Id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();
     }
-    var entityToSave = _mapper.Map<Branch>(branch);
+    var entityToSave = _mapper.Map<User>(User);
     await _repository.UpdateAsync(entityToSave);
 
     return Ok(entityToSave);

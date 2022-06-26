@@ -10,7 +10,7 @@ using ShadyNagy.ApiTemplate.Core.Specifications;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchesEndpoints;
+namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
 public class ByCityId : BaseAsyncEndpoint
     .WithRequest<int>

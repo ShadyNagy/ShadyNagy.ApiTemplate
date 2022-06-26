@@ -8,29 +8,29 @@ using ShadyNagy.ApiTemplate.Core.Specifications;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchesEndpoints;
+namespace ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
 
 public class Delete : BaseAsyncEndpoint
     .WithRequest<int>
     .WithResponse<bool>
 {
-  private readonly IRepository<Branch> _repository;
+  private readonly IRepository<City> _repository;
 
-  public Delete(IRepository<Branch> repository)
+  public Delete(IRepository<City> repository)
   {
     _repository = repository;
   }
 
-  [HttpDelete("/branches/{id:int}")]
+  [HttpDelete("/cities/{id:int}")]
   [SwaggerOperation(
-      Summary = "Deletes a branch",
-      Description = "Deletes a branch",
-      OperationId = "Branch.Delete",
-      Tags = new[] { "BranchesEndpoints" })
+      Summary = "Deletes a City",
+      Description = "Deletes a City",
+      OperationId = "City.Delete",
+      Tags = new[] { "CitiesEndpoints" })
   ]
   public override async Task<ActionResult<bool>> HandleAsync(int id, CancellationToken cancellationToken)
   {
-    var spec = new BranchByIdSpec(id);
+    var spec = new CityByIdSpec(id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
     if (entity == null)
     {

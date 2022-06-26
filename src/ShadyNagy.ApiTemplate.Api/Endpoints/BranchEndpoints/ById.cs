@@ -8,7 +8,7 @@ using ShadyNagy.ApiTemplate.Core.Entities;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchesEndpoints;
+namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
 public class ById : BaseAsyncEndpoint
     .WithRequest<int>

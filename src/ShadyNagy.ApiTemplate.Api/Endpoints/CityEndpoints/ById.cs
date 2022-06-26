@@ -1,0 +1,40 @@
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Ardalis.ApiEndpoints;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using ShadyNagy.ApiTemplate.Api.Dtos;
+using ShadyNagy.ApiTemplate.Core.Entities;
+using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
+using Swashbuckle.AspNetCore.Annotations;
+
+namespace ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
+
+public class ById : BaseAsyncEndpoint
+    .WithRequest<int>
+    .WithResponse<CityDto>
+{
+  private readonly IMapper _mapper;
+  private readonly IReadRepository<City> _repository;
+
+  public ById(IMapper mapper, IReadRepository<City> repository)
+  {
+    _mapper = mapper;
+    _repository = repository;
+  }
+
+  [HttpGet("/cities/{id:int}")]
+  [SwaggerOperation(
+      Summary = "Gets City by id",
+      Description = "Gets City by id",
+      OperationId = "City.ById",
+      Tags = new[] { "CitiesEndpoints" })
+  ]
+  public override async Task<ActionResult<CityDto>> HandleAsync(int id, CancellationToken cancellationToken)
+  {
+    var entity = await _repository.GetByIdAsync(id);
+    var response = _mapper.Map<CityDto>(entity);
+
+    return Ok(response);
+  }
+}
