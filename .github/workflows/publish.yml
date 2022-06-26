@@ -1,4 +1,4 @@
-name: publish Ardalis.CleanArchitecture Template to nuget
+name: publish ShadyNagy.ApiTemplate Template to nuget
 on:
   push:
     branches:
