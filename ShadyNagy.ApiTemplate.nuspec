@@ -3,7 +3,7 @@
   <metadata>
     <id>ShadyNagy.ApiTemplate</id>
     <title>ASP.NET Core Clean Architecture Solution</title>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <authors>Shady Nagy</authors>
     <description>
       The Clean Architecture Solution Template popularized by Steve @ardalis Smith. Provides a great starting point for modern and/or DDD solutions built with .NET 6 and C# 10.
