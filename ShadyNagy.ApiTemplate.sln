@@ -20,7 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		Directory.Packages.props = Directory.Packages.props
-		global.json = global.json
 		LICENSE = LICENSE
 		nuget.config = nuget.config
 		README.md = README.md
