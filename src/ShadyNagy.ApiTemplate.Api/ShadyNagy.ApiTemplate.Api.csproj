@@ -27,9 +27,5 @@
   <ItemGroup>
     <ProjectReference Include="..\ShadyNagy.ApiTemplate.Infrastructure\ShadyNagy.ApiTemplate.Infrastructure.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Endpoints\BranchesEndpoints\" />
-  </ItemGroup>
 	
 </Project>
