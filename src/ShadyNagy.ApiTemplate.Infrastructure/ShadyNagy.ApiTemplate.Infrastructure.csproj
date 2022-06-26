@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+	<PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="5.2.0" />
+	<PackageReference Include="Ardalis.EFCore.Extensions" Version="1.1.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" Version="6.0.0" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
+	<PackageReference Include="NETStandard.Library" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ShadyNagy.ApiTemplate.Core\ShadyNagy.ApiTemplate.Core.csproj" />
+    <ProjectReference Include="..\ShadyNagy.ApiTemplate.SharedKernel\ShadyNagy.ApiTemplate.SharedKernel.csproj" />
+  </ItemGroup>
+	
 </Project>

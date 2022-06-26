@@ -4,5 +4,4 @@
 // Repositories will only work with aggregate roots, not their children
 public interface IAggregateRoot
 {
-  int Id { get; }
 }
