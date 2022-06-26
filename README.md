@@ -30,4 +30,5 @@ dotnet ef migrations script -c AppDbContext -i -o migrate.sql -p ../ShadyNagy.Ap
 ### Some CLI
 ```powershell
 dotnet format whitespace
+dotnet format style
 ```
