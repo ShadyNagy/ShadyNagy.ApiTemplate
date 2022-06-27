@@ -3,5 +3,5 @@
 public class ByIdCountryRequest
 {
   public const string Route = "/countries/{id}";
-  public static string BuildRoute(int cityId) => Route.Replace("{id}", cityId.ToString());
+  public static string BuildRoute(string id) => Route.Replace("{id}", id);
 }

@@ -11,11 +11,11 @@ using Xunit;
 namespace ShadyNagy.ApiTemplate.FunctionalTests.Endpoints.CityEndpoints;
 
 [Collection("Sequential")]
-public class ByCityIdTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
+public class ByIdTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
 {
   private readonly HttpClient _client;
 
-  public ByCityIdTests(CustomWebApplicationFactory<ApiMarker> factory)
+  public ByIdTests(CustomWebApplicationFactory<ApiMarker> factory)
   {
     _client = factory.CreateClient();
   }

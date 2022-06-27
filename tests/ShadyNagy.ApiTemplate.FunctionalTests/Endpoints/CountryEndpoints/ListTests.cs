@@ -4,11 +4,12 @@ using Ardalis.HttpClientTestExtensions;
 using ShadyNagy.ApiTemplate.Api;
 using ShadyNagy.ApiTemplate.Api.Dtos;
 using ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
+using ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 using ShadyNagy.ApiTemplate.TestsSharedKernel;
 using Shouldly;
 using Xunit;
 
-namespace ShadyNagy.ApiTemplate.FunctionalTests.Endpoints.CityEndpoints;
+namespace ShadyNagy.ApiTemplate.FunctionalTests.Endpoints.CountryEndpoints;
 
 [Collection("Sequential")]
 public class ListTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
@@ -21,13 +22,13 @@ public class ListTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
   }
 
   [Fact]
-  public async Task ReturnsSeedCitiesAsync()
+  public async Task ReturnsSeedCountriesAsync()
   {
-    var result = await _client.GetAndDeserialize<ListResponse<CityDto>>(ListCityRequest.Route);
+    var result = await _client.GetAndDeserialize<ListResponse<CountryDto>>(ListCountryRequest.Route);
 
-    result.Data.Count.ShouldBeGreaterThan(0);
-    result.TotalCount.ShouldBe(1);
-    result.Data[0].Name.ShouldBe(SeedData.TestCity1.Name);
+    result.Data.Count.ShouldBeGreaterThan(1);
+    result.TotalCount.ShouldBe(2);
+    result.Data[0].Name.ShouldBe(SeedData.TestCountry1.Name);
   }
 }
 

@@ -16,7 +16,7 @@
   },
   "identity": "ShadyNagy.ApiTemplate",
   "name": "ASP.NET Clean Architecture Endpoints Solution",
-  "shortName": "clean-arch",
+  "shortName": "clean-api",
   "sourceName": "ShadyNagy.ApiTemplate",
   "preferNameDirectory": true
 }

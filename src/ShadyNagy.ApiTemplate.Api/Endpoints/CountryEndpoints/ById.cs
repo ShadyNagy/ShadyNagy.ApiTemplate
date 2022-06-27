@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 
 public class ById : BaseAsyncEndpoint
-    .WithRequest<int>
+    .WithRequest<string>
     .WithResponse<CountryDto>
 {
   private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ public class ById : BaseAsyncEndpoint
       OperationId = "Country.ById",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<CountryDto>> HandleAsync(int id, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CountryDto>> HandleAsync(string id, CancellationToken cancellationToken)
   {
     var entity = await _repository.GetByIdAsync(id);
     var response = _mapper.Map<CountryDto>(entity);
