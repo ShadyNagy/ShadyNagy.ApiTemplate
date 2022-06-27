@@ -25,7 +25,7 @@ public class List : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/users")]
+  [HttpGet(ListUserRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets a list of all Users",
       Description = "Gets a list of Users",

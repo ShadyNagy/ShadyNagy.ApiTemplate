@@ -23,7 +23,7 @@ public class ById : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/cities/{id:int}")]
+  [HttpGet(ByIdCityRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets City by id",
       Description = "Gets City by id",

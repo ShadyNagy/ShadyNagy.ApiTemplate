@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
 public class Add : BaseAsyncEndpoint
-    .WithRequest<BranchDto>
+    .WithRequest<AddBranchRequest>
     .WithResponse<BranchDto>
 {
   private readonly IMapper _mapper;
@@ -25,14 +25,14 @@ public class Add : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPost("/branches")]
+  [HttpPost(AddBranchRequest.Route)]
   [SwaggerOperation(
       Summary = "Adds a branch",
       Description = "Adds a branch",
       OperationId = "Branch.Add",
       Tags = new[] { "BranchesEndpoints" })
   ]
-  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] BranchDto branch, CancellationToken cancellationToken)
+  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] AddBranchRequest branch, CancellationToken cancellationToken)
   {
     var entityToSave = _mapper.Map<Branch>(branch);
     var maxId = await _readRepository.GetMaxIdAsync();

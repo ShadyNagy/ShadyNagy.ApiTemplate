@@ -21,7 +21,7 @@ public class Delete : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpDelete("/countries/{id}")]
+  [HttpDelete(DeleteCountryRequest.Route)]
   [SwaggerOperation(
       Summary = "Deletes a Country",
       Description = "Deletes a Country",

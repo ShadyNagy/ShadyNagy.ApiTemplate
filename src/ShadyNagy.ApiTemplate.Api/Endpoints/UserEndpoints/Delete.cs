@@ -21,7 +21,7 @@ public class Delete : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpDelete("/users/{id}")]
+  [HttpDelete(DeleteUserRequest.Route)]
   [SwaggerOperation(
       Summary = "Deletes a User",
       Description = "Deletes a User",

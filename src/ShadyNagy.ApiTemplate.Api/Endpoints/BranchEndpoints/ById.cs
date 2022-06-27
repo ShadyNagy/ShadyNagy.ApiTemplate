@@ -23,7 +23,7 @@ public class ById : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/branches/{id:int}")]
+  [HttpGet(ByIdBranchRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets branch by id",
       Description = "Gets branch by id",

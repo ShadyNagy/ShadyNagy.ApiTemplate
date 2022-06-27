@@ -24,7 +24,7 @@ public class ById : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/users/{id}")]
+  [HttpGet(ByIdUserRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets User by id",
       Description = "Gets User by id",

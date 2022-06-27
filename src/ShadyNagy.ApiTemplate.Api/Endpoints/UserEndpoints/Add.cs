@@ -25,7 +25,7 @@ public class Add : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPost("/users")]
+  [HttpPost(AddUserRequest.Route)]
   [SwaggerOperation(
       Summary = "Adds a User",
       Description = "Adds a User",

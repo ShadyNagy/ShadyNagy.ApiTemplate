@@ -12,7 +12,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
 public class Edit : BaseAsyncEndpoint
-    .WithRequest<BranchDto>
+    .WithRequest<EditBranchRequest>
     .WithResponse<BranchDto>
 {
   private readonly IMapper _mapper;
@@ -26,14 +26,14 @@ public class Edit : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPut("/branches/{id:int}")]
+  [HttpPut(EditBranchRequest.Route)]
   [SwaggerOperation(
       Summary = "Edits a branch",
       Description = "Edits a branch",
       OperationId = "Branch.Edit",
       Tags = new[] { "BranchesEndpoints" })
   ]
-  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] BranchDto branch, CancellationToken cancellationToken)
+  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] EditBranchRequest branch, CancellationToken cancellationToken)
   {
     var spec = new BranchByIdSpec(branch.Id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);

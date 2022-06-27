@@ -25,7 +25,7 @@ public class List : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/branches")]
+  [HttpGet(ListBranchRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets a list of all branches",
       Description = "Gets a list of branches",

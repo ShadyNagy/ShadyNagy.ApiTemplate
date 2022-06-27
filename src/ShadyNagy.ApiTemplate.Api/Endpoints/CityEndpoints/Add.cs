@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
 
 public class Add : BaseAsyncEndpoint
-    .WithRequest<CityDto>
+    .WithRequest<AddCityRequest>
     .WithResponse<CityDto>
 {
   private readonly IMapper _mapper;
@@ -25,14 +25,14 @@ public class Add : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPost("/cities")]
+  [HttpPost(AddCityRequest.Route)]
   [SwaggerOperation(
       Summary = "Adds a City",
       Description = "Adds a City",
       OperationId = "City.Add",
       Tags = new[] { "CitiesEndpoints" })
   ]
-  public override async Task<ActionResult<CityDto>> HandleAsync([FromBody] CityDto City, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CityDto>> HandleAsync([FromBody] AddCityRequest City, CancellationToken cancellationToken)
   {
     var entityToSave = _mapper.Map<City>(City);
     var maxId = await _readRepository.GetMaxIdAsync();

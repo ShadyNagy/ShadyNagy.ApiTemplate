@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 
 public class Add : BaseAsyncEndpoint
-    .WithRequest<CountryDto>
+    .WithRequest<AddCountryRequest>
     .WithResponse<CountryDto>
 {
   private readonly IMapper _mapper;
@@ -25,14 +25,14 @@ public class Add : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPost("/countries")]
+  [HttpPost(AddCountryRequest.Route)]
   [SwaggerOperation(
       Summary = "Adds a Country",
       Description = "Adds a Country",
       OperationId = "Country.Add",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] CountryDto Country, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] AddCountryRequest Country, CancellationToken cancellationToken)
   {
     var entityToSave = _mapper.Map<Country>(Country);
     var maxId = await _readRepository.GetMaxIdAsync();

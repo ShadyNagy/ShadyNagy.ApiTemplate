@@ -25,7 +25,7 @@ public class ByCityId : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/branches/by-city-id/{cityId:int}")]
+  [HttpGet(ByCityIdBranchRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets branches by city id",
       Description = "Gets branches by city id",

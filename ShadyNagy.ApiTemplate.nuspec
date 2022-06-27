@@ -3,7 +3,7 @@
   <metadata>
     <id>ShadyNagy.ApiTemplate</id>
     <title>ASP.NET Core Clean Architecture Solution</title>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <authors>Shady Nagy</authors>
     <description>
       The Clean Architecture Solution Template popularized by Steve @ardalis Smith. Provides a great starting point for modern and/or DDD solutions built with .NET 6 and C# 10.
@@ -12,11 +12,11 @@
     <language>en-US</language>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/ShadyNagy/ShadyNagy.ApiTemplate</projectUrl>
-    <releaseNotes>Start</releaseNotes>
+    <releaseNotes>Request for every endpoint has been added.</releaseNotes>
     <packageTypes>
       <packageType name="Template" />
     </packageTypes>
-    <tags>Web ASP.NET "Clean Architecture" ddd, EF, Endpoints</tags>
+    <tags>Web ASP.NET "Clean Architecture" ddd, EF, Endpoints, API</tags>
     <icon>./content/icon.png</icon>
     <readme>README.md</readme>
   </metadata>

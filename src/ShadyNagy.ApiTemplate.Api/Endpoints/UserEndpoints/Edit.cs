@@ -26,7 +26,7 @@ public class Edit : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPut("/users/{id:int}")]
+  [HttpPut(EditUserRequest.Route)]
   [SwaggerOperation(
       Summary = "Edits a User",
       Description = "Edits a User",

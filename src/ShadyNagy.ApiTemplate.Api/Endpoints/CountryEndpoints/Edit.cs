@@ -12,7 +12,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 
 public class Edit : BaseAsyncEndpoint
-    .WithRequest<CountryDto>
+    .WithRequest<EditCountryRequest>
     .WithResponse<CountryDto>
 {
   private readonly IMapper _mapper;
@@ -26,14 +26,14 @@ public class Edit : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpPut("/Countries/{id:int}")]
+  [HttpPut(EditCountryRequest.Route)]
   [SwaggerOperation(
       Summary = "Edits a Country",
       Description = "Edits a Country",
       OperationId = "Country.Edit",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] CountryDto Country, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] EditCountryRequest Country, CancellationToken cancellationToken)
   {
     var spec = new CountryByIdSpec(Country.Id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);

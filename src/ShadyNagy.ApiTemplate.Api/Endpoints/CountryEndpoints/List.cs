@@ -25,7 +25,7 @@ public class List : BaseAsyncEndpoint
     _repository = repository;
   }
 
-  [HttpGet("/Countries")]
+  [HttpGet(ListCountryRequest.Route)]
   [SwaggerOperation(
       Summary = "Gets a list of all Countries",
       Description = "Gets a list of Countries",
