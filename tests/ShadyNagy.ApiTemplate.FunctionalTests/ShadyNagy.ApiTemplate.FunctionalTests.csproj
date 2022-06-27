@@ -20,7 +20,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
-    <PackageReference Include="Ardalis.HttpClientTestExtensions" />    
+    <PackageReference Include="Ardalis.HttpClientTestExtensions" />
+    <PackageReference Include="Shouldly" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,22 +11,21 @@ using Xunit;
 namespace ShadyNagy.ApiTemplate.FunctionalTests.Endpoints.CityEndpoints;
 
 [Collection("Sequential")]
-public class ByCityIdTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
+public class DeleteTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
 {
   private readonly HttpClient _client;
 
-  public ByCityIdTests(CustomWebApplicationFactory<ApiMarker> factory)
+  public DeleteTests(CustomWebApplicationFactory<ApiMarker> factory)
   {
     _client = factory.CreateClient();
   }
 
   [Fact]
-  public async Task ReturnsSeedCityGivenId1Async()
+  public async Task ReturnsTrueAfterDeleteAsync()
   {
-    var result = await _client.GetAndDeserialize<CityDto>(ByIdCityRequest.BuildRoute(1));
+    var response = await _client.DeleteAsync(DeleteCityRequest.BuildRoute(1));
 
-    result.Id.ShouldBe(1);
-    result.Name.ShouldBe(SeedData.TestCity1.Name);
+    response.IsSuccessStatusCode.ShouldBeTrue();
   }
 }
 

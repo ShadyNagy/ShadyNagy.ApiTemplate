@@ -35,7 +35,6 @@ public class Add : BaseAsyncEndpoint
   public override async Task<ActionResult<CityDto>> HandleAsync([FromBody] AddCityRequest City, CancellationToken cancellationToken)
   {
     var entityToSave = _mapper.Map<City>(City);
-    var maxId = await _readRepository.GetMaxIdAsync();
 
     var addedEntity = await _repository.AddAsync(entityToSave);
 

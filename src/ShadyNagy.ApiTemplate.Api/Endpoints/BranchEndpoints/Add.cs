@@ -35,7 +35,6 @@ public class Add : BaseAsyncEndpoint
   public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] AddBranchRequest branch, CancellationToken cancellationToken)
   {
     var entityToSave = _mapper.Map<Branch>(branch);
-    var maxId = await _readRepository.GetMaxIdAsync();
 
     var addedEntity = await _repository.AddAsync(entityToSave);
 
