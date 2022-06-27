@@ -1,3 +1,7 @@
+[![.NET Core](https://github.com/ShadyNagy/ShadyNagy.ApiTemplate/workflows/.NET%20Core/badge.svg)](https://github.com/ShadyNagy/ShadyNagy.ApiTemplate/actions)
+[![publish ShadyNagy.ApiTemplate to nuget](https://github.com/ShadyNagy/ShadyNagy.ApiTemplate/actions/workflows/publish.yml/badge.svg)](https://github.com/ShadyNagy/ShadyNagy.ApiTemplate/actions/workflows/publish.yml)
+[![ShadyNagy.ApiTemplate on NuGet](https://img.shields.io/nuget/v/ShadyNagy.ApiTemplate?label=ShadyNagy.ApiTemplate)](https://www.nuget.org/packages/ShadyNagy.ApiTemplate/)
+
 # ShadyNagy.ApiTemplate
 
 
