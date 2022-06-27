@@ -3,7 +3,7 @@
   <metadata>
     <id>ShadyNagy.ApiTemplate</id>
     <title>ASP.NET Clean Architecture Endpoints Solution</title>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
     <authors>Shady Nagy</authors>
     <description>
       The API Solution Template popularized by Shady Nagy. Provides a great starting point for modern and/or DDD solutions built with .NET 6 and C# 10.

@@ -39,7 +39,7 @@ builder.Services.AddDbContext<AppDbContext>(OptionsAction);
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
 
-builder.Services.AddMediatR(Assembly.GetAssembly(typeof(Program)));
+builder.Services.AddMediatR(Assembly.GetAssembly(typeof(Program))!);
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
