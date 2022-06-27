@@ -10,5 +10,5 @@ public class User : BaseEntity<Guid>, IAggregateRoot
   public bool IsActive { get; set; }
   public UserType UserType { get; set; }
   public int UserInfoId { get; set; }
-  public virtual UserInfo UserInfo { get; set; } = new UserInfo();
+  public virtual UserInfo? UserInfo { get; set; }
 }

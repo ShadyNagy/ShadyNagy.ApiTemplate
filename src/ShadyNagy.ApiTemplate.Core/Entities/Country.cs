@@ -7,6 +7,6 @@ namespace ShadyNagy.ApiTemplate.Core.Entities;
 public class Country : BaseEntity<string>, IAggregateRoot
 {
   public string Name { get; set; } = string.Empty;
-  public virtual List<City> Cities { get; set; } = new List<City>();
+  public virtual List<City>? Cities { get; set; }
 }
 
