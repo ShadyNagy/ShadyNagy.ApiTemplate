@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.Specification.EntityFrameworkCore;
@@ -33,6 +34,13 @@ public class EfRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepositor
         return _dbContext.Set<T>()
           .MaxAsync(x =>
             EF.Property<int>(x, property.Name), cancellationToken);
+      }
+
+      if (property.ClrType == typeof(string))
+      {
+        return _dbContext.Set<T>()
+          .MaxAsync(x =>
+            Convert.ToInt32(EF.Property<string>(x, property.Name)), cancellationToken);
       }
     }
 
