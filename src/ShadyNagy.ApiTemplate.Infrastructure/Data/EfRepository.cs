@@ -32,7 +32,7 @@ public class EfRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepositor
       {
         return _dbContext.Set<T>()
           .MaxAsync(x =>
-            EF.Property<int>(x, "Id"), cancellationToken);
+            EF.Property<int>(x, property.Name), cancellationToken);
       }
     }
 
