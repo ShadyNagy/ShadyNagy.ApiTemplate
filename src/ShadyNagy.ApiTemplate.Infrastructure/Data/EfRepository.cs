@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,24 @@ public class EfRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepositor
 
   public Task<int> GetMaxIdAsync(CancellationToken cancellationToken = default)
   {
-    return _dbContext.Set<T>().MaxAsync(x => (int)x.GetType().GetProperty("Id")!.GetValue(x, null)!, cancellationToken);
+    var entitiesTypes = _dbContext.Model.GetEntityTypes();
+    var tableType = entitiesTypes.First(c => c.ClrType == typeof(T));
+    foreach (var property in tableType.GetProperties())
+    {
+      if (property.Name.ToLower() != "id")
+      {
+        continue;
+      }
+
+      if (property.ClrType == typeof(int) || property.ClrType == typeof(decimal) ||
+          property.ClrType == typeof(double) || property.ClrType == typeof(float))
+      {
+        return _dbContext.Set<T>()
+          .MaxAsync(x =>
+            EF.Property<int>(x, "Id"), cancellationToken);
+      }
+    }
+
+    return Task.FromResult(0);
   }
 }
