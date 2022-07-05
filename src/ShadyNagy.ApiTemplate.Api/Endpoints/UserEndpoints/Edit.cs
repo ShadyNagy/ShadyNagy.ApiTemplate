@@ -44,6 +44,8 @@ public class Edit : BaseAsyncEndpoint
     var entityToSave = _mapper.Map<User>(User);
     await _repository.UpdateAsync(entityToSave, cancellationToken);
 
-    return Ok(entityToSave);
+    var response = _mapper.Map<UserDto>(entityToSave);
+
+    return Ok(response);
   }
 }

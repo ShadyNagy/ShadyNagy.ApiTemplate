@@ -38,6 +38,8 @@ public class Add : BaseAsyncEndpoint
 
     var addedEntity = await _repository.AddAsync(entityToSave, cancellationToken);
 
-    return Ok(addedEntity);
+    var response = _mapper.Map<CountryDto>(addedEntity);
+
+    return Ok(response);
   }
 }

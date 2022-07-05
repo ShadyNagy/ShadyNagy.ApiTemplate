@@ -44,6 +44,8 @@ public class Edit : BaseAsyncEndpoint
     var entityToSave = _mapper.Map<Country>(countryDto);
     await _repository.UpdateAsync(entityToSave, cancellationToken);
 
-    return Ok(entityToSave);
+    var response = _mapper.Map<CountryDto>(entityToSave);
+
+    return Ok(response);
   }
 }
