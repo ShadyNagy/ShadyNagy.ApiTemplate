@@ -31,9 +31,9 @@ public class ById : BaseAsyncEndpoint
       OperationId = "User.ById",
       Tags = new[] { "UsersEndpoints" })
   ]
-  public override async Task<ActionResult<UserDto>> HandleAsync(Guid id, CancellationToken cancellationToken)
+  public override async Task<ActionResult<UserDto>> HandleAsync(Guid id, CancellationToken cancellationToken = default)
   {
-    var entity = await _repository.GetByIdAsync(id);
+    var entity = await _repository.GetByIdAsync(id, cancellationToken);
     var response = _mapper.Map<UserDto>(entity);
 
     return Ok(response);

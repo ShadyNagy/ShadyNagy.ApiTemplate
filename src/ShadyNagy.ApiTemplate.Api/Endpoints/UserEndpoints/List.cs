@@ -32,10 +32,10 @@ public class List : BaseAsyncEndpoint
       OperationId = "Users.List",
       Tags = new[] { "UsersEndpoints" })
   ]
-  public override async Task<ActionResult<ListResponse<UserDto>>> HandleAsync(CancellationToken cancellationToken)
+  public override async Task<ActionResult<ListResponse<UserDto>>> HandleAsync(CancellationToken cancellationToken = default)
   {
     var spec = new UsersOrderByNameSpec();
-    var entities = await _repository.ListAsync(spec);
+    var entities = await _repository.ListAsync(spec, cancellationToken);
     var responseData = _mapper.Map<List<UserDto>>(entities);
     var response = new ListResponse<UserDto>(responseData);
 

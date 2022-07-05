@@ -33,16 +33,16 @@ public class Edit : BaseAsyncEndpoint
       OperationId = "User.Edit",
       Tags = new[] { "UsersEndpoints" })
   ]
-  public override async Task<ActionResult<UserDto>> HandleAsync([FromBody] UserDto User, CancellationToken cancellationToken)
+  public override async Task<ActionResult<UserDto>> HandleAsync([FromBody] UserDto userDto, CancellationToken cancellationToken = default)
   {
-    var spec = new UserByIdSpec(User.Id);
+    var spec = new UserByIdSpec(userDto.Id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();
     }
     var entityToSave = _mapper.Map<User>(User);
-    await _repository.UpdateAsync(entityToSave);
+    await _repository.UpdateAsync(entityToSave, cancellationToken);
 
     return Ok(entityToSave);
   }

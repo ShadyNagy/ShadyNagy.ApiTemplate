@@ -28,7 +28,7 @@ public class Delete : BaseAsyncEndpoint
       OperationId = "User.Delete",
       Tags = new[] { "UsersEndpoints" })
   ]
-  public override async Task<ActionResult<bool>> HandleAsync(Guid id, CancellationToken cancellationToken)
+  public override async Task<ActionResult<bool>> HandleAsync(Guid id, CancellationToken cancellationToken = default)
   {
     var spec = new UserByIdSpec(id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);

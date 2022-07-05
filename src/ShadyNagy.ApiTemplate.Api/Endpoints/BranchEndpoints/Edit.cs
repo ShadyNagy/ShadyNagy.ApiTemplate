@@ -33,17 +33,19 @@ public class Edit : BaseAsyncEndpoint
       OperationId = "Branch.Edit",
       Tags = new[] { "BranchesEndpoints" })
   ]
-  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] EditBranchRequest branch, CancellationToken cancellationToken)
+  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] EditBranchRequest branchDto, CancellationToken cancellationToken = default)
   {
-    var spec = new BranchByIdSpec(branch.Id);
+    var spec = new BranchByIdSpec(branchDto.Id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();
     }
-    var entityToSave = _mapper.Map<Branch>(branch);
-    await _repository.UpdateAsync(entityToSave);
+    var entityToSave = _mapper.Map<Branch>(branchDto);
+    await _repository.UpdateAsync(entityToSave, cancellationToken);
 
-    return Ok(entityToSave);
+    var response = _mapper.Map<BranchDto>(entityToSave);
+
+    return Ok(response);
   }
 }

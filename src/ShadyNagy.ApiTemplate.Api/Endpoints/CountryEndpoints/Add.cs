@@ -32,11 +32,11 @@ public class Add : BaseAsyncEndpoint
       OperationId = "Country.Add",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] AddCountryRequest Country, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] AddCountryRequest countryDto, CancellationToken cancellationToken = default)
   {
-    var entityToSave = _mapper.Map<Country>(Country);
+    var entityToSave = _mapper.Map<Country>(countryDto);
 
-    var addedEntity = await _repository.AddAsync(entityToSave);
+    var addedEntity = await _repository.AddAsync(entityToSave, cancellationToken);
 
     return Ok(addedEntity);
   }

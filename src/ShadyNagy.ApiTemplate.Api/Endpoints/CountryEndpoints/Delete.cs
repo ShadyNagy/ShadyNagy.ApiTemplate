@@ -28,7 +28,7 @@ public class Delete : BaseAsyncEndpoint
       OperationId = "Country.Delete",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<bool>> HandleAsync(string id, CancellationToken cancellationToken)
+  public override async Task<ActionResult<bool>> HandleAsync(string id, CancellationToken cancellationToken = default)
   {
     var spec = new CountryByIdSpec(id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
@@ -36,7 +36,7 @@ public class Delete : BaseAsyncEndpoint
     {
       return NotFound();
     }
-    await _repository.DeleteAsync(entity);
+    await _repository.DeleteAsync(entity, cancellationToken);
 
     return Ok(true);
   }

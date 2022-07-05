@@ -33,16 +33,16 @@ public class Edit : BaseAsyncEndpoint
       OperationId = "Country.Edit",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] EditCountryRequest Country, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CountryDto>> HandleAsync([FromBody] EditCountryRequest countryDto, CancellationToken cancellationToken = default)
   {
-    var spec = new CountryByIdSpec(Country.Id);
+    var spec = new CountryByIdSpec(countryDto.Id);
     var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();
     }
-    var entityToSave = _mapper.Map<Country>(Country);
-    await _repository.UpdateAsync(entityToSave);
+    var entityToSave = _mapper.Map<Country>(countryDto);
+    await _repository.UpdateAsync(entityToSave, cancellationToken);
 
     return Ok(entityToSave);
   }

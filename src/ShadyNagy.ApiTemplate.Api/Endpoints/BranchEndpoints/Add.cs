@@ -32,12 +32,14 @@ public class Add : BaseAsyncEndpoint
       OperationId = "Branch.Add",
       Tags = new[] { "BranchesEndpoints" })
   ]
-  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] AddBranchRequest branch, CancellationToken cancellationToken)
+  public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] AddBranchRequest branchDto, CancellationToken cancellationToken = default)
   {
-    var entityToSave = _mapper.Map<Branch>(branch);
+    var entityToSave = _mapper.Map<Branch>(branchDto);
 
-    var addedEntity = await _repository.AddAsync(entityToSave);
+    var addedEntity = await _repository.AddAsync(entityToSave, cancellationToken);
 
-    return Ok(addedEntity);
+    var response = _mapper.Map<BranchDto>(addedEntity);
+
+    return Ok(response);
   }
 }

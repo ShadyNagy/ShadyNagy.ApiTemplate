@@ -30,9 +30,9 @@ public class ById : BaseAsyncEndpoint
       OperationId = "Country.ById",
       Tags = new[] { "CountriesEndpoints" })
   ]
-  public override async Task<ActionResult<CountryDto>> HandleAsync(string id, CancellationToken cancellationToken)
+  public override async Task<ActionResult<CountryDto>> HandleAsync(string id, CancellationToken cancellationToken = default)
   {
-    var entity = await _repository.GetByIdAsync(id);
+    var entity = await _repository.GetByIdAsync(id, cancellationToken);
     var response = _mapper.Map<CountryDto>(entity);
 
     return Ok(response);
