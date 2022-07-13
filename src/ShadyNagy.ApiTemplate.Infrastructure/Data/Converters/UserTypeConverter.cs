@@ -16,7 +16,7 @@ public class UserTypeConverter : ValueConverter<UserType, string>
     return type switch
     {
       UserType.Customer => "C",
-      UserType.Empoyee => "E",
+      UserType.Employee => "E",
       _ => throw new System.NotImplementedException(),
     };
   }
@@ -26,7 +26,7 @@ public class UserTypeConverter : ValueConverter<UserType, string>
     return type.ToUpper() switch
     {
       "C" => UserType.Customer,
-      "E" => UserType.Empoyee,
+      "E" => UserType.Employee,
       _ => throw new System.NotImplementedException(),
     };
   }
