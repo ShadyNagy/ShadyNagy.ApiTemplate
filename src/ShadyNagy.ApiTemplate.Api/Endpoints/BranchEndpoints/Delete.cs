@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShadyNagy.ApiTemplate.Core.Entities;
 using ShadyNagy.ApiTemplate.Core.Specifications;
@@ -10,6 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
+[Authorize]
 public class Delete : BaseAsyncEndpoint
     .WithRequest<int>
     .WithResponse<bool>

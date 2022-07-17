@@ -18,8 +18,10 @@
 	<PackageReference Include="MediatR" />
 	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" />
 	<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" />
-    <PackageReference Include="Oracle.EntityFrameworkCore" />
+	<PackageReference Include="Microsoft.Extensions.Configuration" />
+  <PackageReference Include="Oracle.EntityFrameworkCore" />
 	<PackageReference Include="Oracle.ManagedDataAccess.Core" />
 	<PackageReference Include="Swashbuckle.AspNetCore" />
 	<PackageReference Include="Serilog.AspNetCore" />

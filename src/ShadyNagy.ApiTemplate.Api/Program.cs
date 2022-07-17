@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using Ardalis.ListStartupServices;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -11,11 +12,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ShadyNagy.ApiTemplate.Api.Extensions;
 using ShadyNagy.ApiTemplate.Core.Interfaces;
 using ShadyNagy.ApiTemplate.Infrastructure;
 using ShadyNagy.ApiTemplate.Infrastructure.Data;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 const string CORS_POLICY = "CorsPolicy";
 
@@ -58,10 +62,45 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddSwaggerGen(c =>
+var jwtSettings = builder.Configuration.GetJwtSettings();
+var key = Encoding.ASCII.GetBytes(jwtSettings.SecretKey);
+builder.Services.AddAuthentication(config =>
+  {
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+  })
+  .AddJwtBearer(options =>
+  {
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+      ValidateIssuerSigningKey = true,
+      IssuerSigningKey = new SymmetricSecurityKey(key),
+      ValidateLifetime = true,
+      ValidateIssuer = true,
+      ValidateAudience = true,
+      ValidAudience = jwtSettings.ValidAudience,
+      ValidIssuer = jwtSettings.ValidIssuer
+    };
+  });
+
+builder.Services.AddSwaggerGen(config =>
 {
-  c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-  c.EnableAnnotations();
+  config.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+  config.EnableAnnotations();
+  config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+  {
+    Description = @"JWT Authorization header using the Bearer scheme.<br /> 
+                      Enter 'Bearer' [space] and then your token in the text input below.<br />
+                      Example: 'Bearer 12345abcdef'",
+    Name = "Authorization",
+    In = ParameterLocation.Header,
+    Type = SecuritySchemeType.ApiKey,
+    Scheme = "Bearer"
+  });
+  config.CustomSchemaIds(type => type.ToString());
 });
 
 // add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices

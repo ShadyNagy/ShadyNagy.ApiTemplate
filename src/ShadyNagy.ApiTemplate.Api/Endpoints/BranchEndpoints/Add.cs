@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShadyNagy.ApiTemplate.Api.Dtos;
 using ShadyNagy.ApiTemplate.Core.Entities;
@@ -10,6 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
+[Authorize]
 public class Add : BaseAsyncEndpoint
     .WithRequest<AddBranchRequest>
     .WithResponse<BranchDto>
