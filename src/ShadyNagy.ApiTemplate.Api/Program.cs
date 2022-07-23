@@ -20,6 +20,7 @@ using ShadyNagy.ApiTemplate.Infrastructure;
 using ShadyNagy.ApiTemplate.Infrastructure.Data;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ShadyNagy.ApiTemplate.Core.AppSettings;
 using ShadyNagy.ApiTemplate.Infrastructure.Identity;
 
 const string CORS_POLICY = "CorsPolicy";
@@ -48,6 +49,7 @@ builder.Services.AddMediatR(Assembly.GetAssembly(typeof(Program))!);
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
+builder.Services.AddScoped<JwtSettings>();
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
