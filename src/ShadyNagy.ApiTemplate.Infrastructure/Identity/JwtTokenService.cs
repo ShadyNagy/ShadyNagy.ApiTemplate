@@ -6,9 +6,10 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using ShadyNagy.ApiTemplate.Core.AppSettings;
 using ShadyNagy.ApiTemplate.Core.Entities;
+using ShadyNagy.ApiTemplate.Core.Interfaces;
 
 namespace ShadyNagy.ApiTemplate.Infrastructure.Identity;
-public class JwtTokenService
+public class JwtTokenService: IJwtTokenService
 {
   private readonly JwtSettings _jwtSettings;
 
@@ -17,7 +18,7 @@ public class JwtTokenService
     _jwtSettings = jwtSettings;
   }
 
-  public string GetTokenAsync(AuthenticationInfo authenticationInfo)
+  public string GetToken(AuthenticationInfo authenticationInfo)
   {
     var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
     var claims = new List<Claim>
