@@ -22,11 +22,11 @@ public class JwtTokenService
     var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
     var claims = new List<Claim>
     {
-      new Claim(ClaimTypes.Name, authenticationInfo.FullName),
-      new Claim(ClaimTypes.Sid, Guid.NewGuid().ToString()),
-      new Claim(ClaimTypes.Email, authenticationInfo.Email),
-      new Claim(ClaimTypes.PrimarySid, authenticationInfo.Code),
-      new Claim(ClaimTypes.NameIdentifier, authenticationInfo.UserName)
+      new(ClaimTypes.Name, authenticationInfo.FullName),
+      new(ClaimTypes.Sid, Guid.NewGuid().ToString()),
+      new(ClaimTypes.Email, authenticationInfo.Email),
+      new(ClaimTypes.PrimarySid, authenticationInfo.Code),
+      new(ClaimTypes.NameIdentifier, authenticationInfo.UserName)
     };
 
     var tokenDescriptor = new SecurityTokenDescriptor
