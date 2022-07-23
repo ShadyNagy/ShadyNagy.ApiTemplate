@@ -3,5 +3,5 @@
 public class DeleteCountryRequest
 {
   public const string Route = "/countries/{id}";
-  public static string BuildRoute(string id) => Route.Replace("{id}", id.ToString());
+  public static string BuildRoute(string id) => Route.Replace("{id}", id);
 }
