@@ -23,7 +23,7 @@ public class AppDbContext : DbContext
     _mediator = mediator;
   }
 
-  public DbSet<Branch> Branchs => Set<Branch>();
+  public DbSet<Branch> Branches => Set<Branch>();
   public DbSet<City> Cities => Set<City>();
   public DbSet<Country> Countries => Set<Country>();
   public DbSet<User> Users => Set<User>();
