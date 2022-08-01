@@ -49,7 +49,8 @@ builder.Services.AddMediatR(Assembly.GetAssembly(typeof(Program))!);
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddScoped<JwtSettings>();
+builder.AddAppSettings();
+
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 
