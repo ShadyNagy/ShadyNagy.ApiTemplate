@@ -23,7 +23,7 @@ public class ByIdTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
   [Fact]
   public async Task ReturnsSeedCountryGivenId1Async()
   {
-    var result = await _client.GetAndDeserialize<CountryDto>(ByIdCountryRequest.BuildRoute("EG"));
+    var result = await _client.GetAndDeserializeAsync<CountryDto>(ByIdCountryRequest.BuildRoute("EG"));
 
     result.Id.ShouldBe("EG");
     result.Name.ShouldBe(SeedData.TestCountry1.Name);

@@ -24,7 +24,7 @@ public class ListTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
   [Fact]
   public async Task ReturnsSeedCountriesAsync()
   {
-    var result = await _client.GetAndDeserialize<ListResponse<CountryDto>>(ListCountryRequest.Route);
+    var result = await _client.GetAndDeserializeAsync<ListResponse<CountryDto>>(ListCountryRequest.Route);
 
     result.Data.Count.ShouldBeGreaterThan(1);
     result.TotalCount.ShouldBe(2);
