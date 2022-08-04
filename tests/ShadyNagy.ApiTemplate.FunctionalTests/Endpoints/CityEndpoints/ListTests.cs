@@ -23,7 +23,7 @@ public class ListTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
   [Fact]
   public async Task ReturnsSeedCitiesAsync()
   {
-    var result = await _client.GetAndDeserialize<ListResponse<CityDto>>(ListCityRequest.Route);
+    var result = await _client.GetAndDeserializeAsync<ListResponse<CityDto>>(ListCityRequest.Route);
 
     result.Data.Count.ShouldBeGreaterThan(0);
     result.TotalCount.ShouldBe(1);

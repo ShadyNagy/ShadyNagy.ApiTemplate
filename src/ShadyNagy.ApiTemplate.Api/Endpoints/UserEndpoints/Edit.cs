@@ -11,9 +11,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.UserEndpoints;
 
-public class Edit : BaseAsyncEndpoint
+public class Edit : EndpointBaseAsync
     .WithRequest<UserDto>
-    .WithResponse<UserDto>
+    .WithActionResult<UserDto>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<User> _readRepository;

@@ -11,9 +11,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 
-public class Edit : BaseAsyncEndpoint
+public class Edit : EndpointBaseAsync
     .WithRequest<EditCountryRequest>
-    .WithResponse<CountryDto>
+    .WithActionResult<CountryDto>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<Country> _readRepository;

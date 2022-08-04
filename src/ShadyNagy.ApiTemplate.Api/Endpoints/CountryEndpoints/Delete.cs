@@ -10,9 +10,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 
-public class Delete : BaseAsyncEndpoint
+public class Delete : EndpointBaseAsync
     .WithRequest<string>
-    .WithResponse<bool>
+    .WithActionResult<bool>
 {
   private readonly IRepository<Country> _repository;
 

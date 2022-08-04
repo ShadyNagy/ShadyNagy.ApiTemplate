@@ -11,9 +11,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
 
-public class Edit : BaseAsyncEndpoint
+public class Edit : EndpointBaseAsync
     .WithRequest<EditCityRequest>
-    .WithResponse<CityDto>
+    .WithActionResult<CityDto>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<City> _readRepository;

@@ -10,9 +10,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.UserEndpoints;
 
-public class Delete : BaseAsyncEndpoint
+public class Delete : EndpointBaseAsync
     .WithRequest<Guid>
-    .WithResponse<bool>
+    .WithActionResult<bool>
 {
   private readonly IRepository<User> _repository;
 

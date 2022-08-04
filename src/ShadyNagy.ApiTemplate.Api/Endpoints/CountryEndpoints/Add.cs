@@ -10,9 +10,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 
-public class Add : BaseAsyncEndpoint
+public class Add : EndpointBaseAsync
     .WithRequest<AddCountryRequest>
-    .WithResponse<CountryDto>
+    .WithActionResult<CountryDto>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<Country> _readRepository;

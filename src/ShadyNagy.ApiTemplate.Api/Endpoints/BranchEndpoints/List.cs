@@ -14,9 +14,9 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
 [Authorize]
-public class List : BaseAsyncEndpoint
+public class List : EndpointBaseAsync
     .WithoutRequest
-    .WithResponse<ListResponse<BranchDto>>
+    .WithActionResult<ListResponse<BranchDto>>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<Branch> _repository;

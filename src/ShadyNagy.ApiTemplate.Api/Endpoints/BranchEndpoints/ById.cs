@@ -12,9 +12,9 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.BranchEndpoints;
 
 [Authorize]
-public class ById : BaseAsyncEndpoint
+public class ById : EndpointBaseAsync
     .WithRequest<int>
-    .WithResponse<BranchDto>
+    .WithActionResult<BranchDto>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<Branch> _repository;

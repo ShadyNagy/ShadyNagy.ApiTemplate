@@ -10,9 +10,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
 
-public class ById : BaseAsyncEndpoint
+public class ById : EndpointBaseAsync
     .WithRequest<int>
-    .WithResponse<CityDto>
+    .WithActionResult<CityDto>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<City> _repository;

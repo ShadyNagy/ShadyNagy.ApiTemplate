@@ -12,9 +12,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.UserEndpoints;
 
-public class List : BaseAsyncEndpoint
+public class List : EndpointBaseAsync
     .WithoutRequest
-    .WithResponse<ListResponse<UserDto>>
+    .WithActionResult<ListResponse<UserDto>>
 {
   private readonly IMapper _mapper;
   private readonly IReadRepository<User> _repository;
