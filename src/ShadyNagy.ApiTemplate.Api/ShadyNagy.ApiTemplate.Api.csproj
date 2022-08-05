@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-    <PackageReference Include="Oracle.EntityFrameworkCore" Version="6.21.4" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="6.21.61" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.41" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
