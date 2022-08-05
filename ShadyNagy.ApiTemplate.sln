@@ -19,7 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		Directory.Packages.props = Directory.Packages.props
 		LICENSE = LICENSE
 		nuget.config = nuget.config
 		README.md = README.md
@@ -27,11 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		.template.config\template.json = .template.config\template.json
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadyNagy.ApiTemplate.FunctionalTests", "tests\ShadyNagy.ApiTemplate.FunctionalTests\ShadyNagy.ApiTemplate.FunctionalTests.csproj", "{1355E03E-C9D5-48CA-9E55-F189F6B6F98C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadyNagy.ApiTemplate.FunctionalTests", "tests\ShadyNagy.ApiTemplate.FunctionalTests\ShadyNagy.ApiTemplate.FunctionalTests.csproj", "{1355E03E-C9D5-48CA-9E55-F189F6B6F98C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadyNagy.ApiTemplate.UnitTests", "tests\ShadyNagy.ApiTemplate.UnitTests\ShadyNagy.ApiTemplate.UnitTests.csproj", "{10F305FA-595E-45EE-8458-44D931311F28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadyNagy.ApiTemplate.UnitTests", "tests\ShadyNagy.ApiTemplate.UnitTests\ShadyNagy.ApiTemplate.UnitTests.csproj", "{10F305FA-595E-45EE-8458-44D931311F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShadyNagy.ApiTemplate.TestsSharedKernel", "tests\ShadyNagy.ApiTemplate.TestsSharedKernel\ShadyNagy.ApiTemplate.TestsSharedKernel.csproj", "{1590D79B-94C9-42DB-9DBA-1ACD24C3534C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShadyNagy.ApiTemplate.TestsSharedKernel", "tests\ShadyNagy.ApiTemplate.TestsSharedKernel\ShadyNagy.ApiTemplate.TestsSharedKernel.csproj", "{1590D79B-94C9-42DB-9DBA-1ACD24C3534C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
