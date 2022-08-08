@@ -22,6 +22,8 @@ using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using ShadyNagy.ApiTemplate.Core.AppSettings;
 using ShadyNagy.ApiTemplate.Infrastructure.Identity;
+using ShadyNagy.ApiTemplate.Api.Interfaces;
+using ShadyNagy.ApiTemplate.Api.Services;
 
 const string CORS_POLICY = "CorsPolicy";
 
@@ -44,6 +46,8 @@ builder.Services.AddDbContext<AppDbContext>(OptionsAction);
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+
+builder.Services.AddScoped<ICountryUiService, CountryUiService>();
 
 builder.Services.AddMediatR(Assembly.GetAssembly(typeof(Program))!);
 
