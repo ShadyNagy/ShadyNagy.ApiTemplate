@@ -1,7 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.ApiEndpoints;
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ShadyNagy.ApiTemplate.Core.Entities;
 using ShadyNagy.ApiTemplate.Core.Specifications;
@@ -30,8 +29,13 @@ public class Delete : EndpointBaseAsync
   ]
   public override async Task<ActionResult<bool>> HandleAsync(int id, CancellationToken cancellationToken = default)
   {
-    var spec = new CityByIdSpec(id);
-    var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+    var filter = new CityFilter
+    {
+      Id = id
+    };
+    var spec = new CityByIdSpec(filter);
+
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();

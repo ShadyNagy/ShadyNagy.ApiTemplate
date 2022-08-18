@@ -36,7 +36,14 @@ public class List : EndpointBaseAsync
   ]
   public override async Task<ActionResult<ListResponse<BranchDto>>> HandleAsync(CancellationToken cancellationToken = default)
   {
-    var spec = new BranchesOrderByNameSpec();
+    var filter = new BranchFilter
+    {
+      IsTrackingEnabled = false,
+      IsPagingEnabled = false,
+      LanguageId = "en",
+    };
+    var spec = new BranchesByFilterSpec(filter);
+
     var entities = await _repository.ListAsync(spec, cancellationToken);
     var responseData = _mapper.Map<List<BranchDto>>(entities);
     var response = new ListResponse<BranchDto>(responseData);

@@ -37,8 +37,13 @@ public class Edit : EndpointBaseAsync
   ]
   public override async Task<ActionResult<BranchDto>> HandleAsync([FromBody] EditBranchRequest branchDto, CancellationToken cancellationToken = default)
   {
-    var spec = new BranchByIdSpec(branchDto.Id);
-    var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+    var filter = new BranchFilter
+    {
+      Id = branchDto.Id
+    };
+    var spec = new BranchByIdSpec(filter);
+
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();

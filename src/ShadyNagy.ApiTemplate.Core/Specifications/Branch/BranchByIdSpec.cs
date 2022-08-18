@@ -2,12 +2,21 @@
 using ShadyNagy.ApiTemplate.Core.Entities;
 
 namespace ShadyNagy.ApiTemplate.Core.Specifications;
-public class BranchByIdSpec : Specification<Branch>, ISingleResultSpecification
+public sealed class BranchByIdSpec : Specification<Branch>, ISingleResultSpecification
 {
-  public BranchByIdSpec(int id)
+  public BranchByIdSpec(BranchFilter filter)
   {
+    if (!filter.IsTrackingEnabled)
+    {
+      Query
+        .AsNoTracking();
+    }
+
+    if (filter.LoadChildren)
+    {
+    }
+
     Query
-    .AsNoTracking()
-    .Where(x => x.Id == id);
+      .Where(b => b.Id == filter.Id);
   }
 }

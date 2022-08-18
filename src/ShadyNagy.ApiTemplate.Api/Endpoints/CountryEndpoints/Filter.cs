@@ -28,11 +28,6 @@ public class Filter : EndpointBaseAsync
   ]
   public override async Task<ActionResult<ListResponse<CountryDto>>> HandleAsync([FromBody] CountryFilterDto filter, CancellationToken cancellationToken = default)
   {
-    filter = filter ?? new CountryFilterDto();
-
-    filter.LoadChildren = true;
-    filter.IsPagingEnabled = true;
-
     return Ok(await _countryUiService.GetCountriesByFilterAsync(filter));
   }
 }

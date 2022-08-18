@@ -12,14 +12,14 @@ using ShadyNagy.ApiTemplate.Infrastructure.Data;
 namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220626124637_MIGRATIONNAME")]
+    [Migration("20220818151223_MIGRATIONNAME")]
     partial class MIGRATIONNAME
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -76,21 +76,42 @@ namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CountryId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)")
                         .HasColumnName("CountryId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)")
-                        .HasColumnName("Name");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities", "Lockup");
+                });
+
+            modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.CityTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LanguageId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("CityTranslations", "Lockup");
                 });
 
             modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.Country", b =>
@@ -108,6 +129,51 @@ namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries", "Lockup");
+                });
+
+            modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.CountryTranslation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("CountryId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LanguageId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("CountryTranslations", "Lockup");
+                });
+
+            modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.Language", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages", "Lockup");
                 });
 
             modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.User", b =>
@@ -189,10 +255,44 @@ namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Migrations
                 {
                     b.HasOne("ShadyNagy.ApiTemplate.Core.Entities.Country", "Country")
                         .WithMany("Cities")
+                        .HasForeignKey("CountryId");
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.CityTranslation", b =>
+                {
+                    b.HasOne("ShadyNagy.ApiTemplate.Core.Entities.City", "City")
+                        .WithMany("CityTranslations")
+                        .HasForeignKey("CityId")
+                        .IsRequired();
+
+                    b.HasOne("ShadyNagy.ApiTemplate.Core.Entities.Language", "Language")
+                        .WithMany("CityTranslations")
+                        .HasForeignKey("LanguageId")
+                        .IsRequired();
+
+                    b.Navigation("City");
+
+                    b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.CountryTranslation", b =>
+                {
+                    b.HasOne("ShadyNagy.ApiTemplate.Core.Entities.Country", "Country")
+                        .WithMany("CountryTranslations")
                         .HasForeignKey("CountryId")
                         .IsRequired();
 
+                    b.HasOne("ShadyNagy.ApiTemplate.Core.Entities.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Country");
+
+                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.User", b =>
@@ -219,18 +319,26 @@ namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Migrations
                 {
                     b.Navigation("Branches");
 
+                    b.Navigation("CityTranslations");
+
                     b.Navigation("UserInfos");
                 });
 
             modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.Country", b =>
                 {
                     b.Navigation("Cities");
+
+                    b.Navigation("CountryTranslations");
+                });
+
+            modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.Language", b =>
+                {
+                    b.Navigation("CityTranslations");
                 });
 
             modelBuilder.Entity("ShadyNagy.ApiTemplate.Core.Entities.UserInfo", b =>
                 {
-                    b.Navigation("User")
-                        .IsRequired();
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Ardalis.HttpClientTestExtensions;
 using ShadyNagy.ApiTemplate.Api;
@@ -26,7 +27,7 @@ public class ByIdTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
     var result = await _client.GetAndDeserializeAsync<CityDto>(ByIdCityRequest.BuildRoute(1));
 
     result.Id.ShouldBe(1);
-    result.Name.ShouldBe(SeedData.TestCity1.Name);
+    result.Name.ShouldBe(SeedData.TestCity1.CityTranslations.FirstOrDefault()!.Name);
   }
 }
 

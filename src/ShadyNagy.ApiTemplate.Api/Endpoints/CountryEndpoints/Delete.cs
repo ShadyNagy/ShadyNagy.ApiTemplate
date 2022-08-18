@@ -30,8 +30,13 @@ public class Delete : EndpointBaseAsync
   ]
   public override async Task<ActionResult<bool>> HandleAsync(string id, CancellationToken cancellationToken = default)
   {
-    var spec = new CountryByIdSpec(id);
-    var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+    var filter = new CountryFilter
+    {
+      Id = id
+    };
+    var spec = new CountryByIdSpec(filter);
+
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();

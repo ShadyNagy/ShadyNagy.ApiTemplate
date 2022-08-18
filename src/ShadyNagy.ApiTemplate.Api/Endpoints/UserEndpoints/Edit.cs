@@ -35,8 +35,14 @@ public class Edit : EndpointBaseAsync
   ]
   public override async Task<ActionResult<UserDto>> HandleAsync([FromBody] UserDto userDto, CancellationToken cancellationToken = default)
   {
-    var spec = new UserByIdSpec(userDto.Id);
-    var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+    var filter = new UserFilter
+    {
+      Id = userDto.Id,
+      IsTrackingEnabled = false
+    };
+    var spec = new UserByIdSpec(filter);
+
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();

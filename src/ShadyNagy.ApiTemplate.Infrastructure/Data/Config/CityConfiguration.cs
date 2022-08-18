@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShadyNagy.ApiTemplate.Core.Entities;
-using ShadyNagy.ApiTemplate.Infrastructure.Data.Constants;
 
 namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Config;
 public class CityConfiguration : IEntityTypeConfiguration<City>
@@ -18,12 +17,6 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
       .IsRequired();
 
     builder
-      .Property(p => p.Name)
-      .HasColumnName("Name")
-      .HasMaxLength(DatabaseColumnsWidth.NAME)
-      .IsRequired();
-
-    builder
       .Property(p => p.CountryId)
       .HasColumnName("CountryId");
 
@@ -31,6 +24,12 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
       .HasOne(t => t.Country)
       .WithMany(p => p.Cities)
       .HasForeignKey(d => d.CountryId)
+      .OnDelete(DeleteBehavior.ClientSetNull);
+
+    builder
+      .HasMany(c => c.CityTranslations)
+      .WithOne(t => t.City)
+      .HasForeignKey(t => t.CityId)
       .OnDelete(DeleteBehavior.ClientSetNull);
   }
 }

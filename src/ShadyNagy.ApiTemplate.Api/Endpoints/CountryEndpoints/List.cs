@@ -34,7 +34,14 @@ public class List : EndpointBaseAsync
   ]
   public override async Task<ActionResult<ListResponse<CountryDto>>> HandleAsync(CancellationToken cancellationToken = default)
   {
-    var spec = new CountriesOrderByNameSpec();
+    var filter = new CountryFilter
+    {
+      IsTrackingEnabled = false,
+      IsPagingEnabled = false,
+      LanguageId = "en",
+    };
+    var spec = new CountriesByFilterSpec(filter);
+
     var entities = await _repository.ListAsync(spec, cancellationToken);
     var responseData = _mapper.Map<List<CountryDto>>(entities);
     var response = new ListResponse<CountryDto>(responseData);

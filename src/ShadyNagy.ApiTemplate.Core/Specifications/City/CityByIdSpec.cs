@@ -2,12 +2,24 @@
 using ShadyNagy.ApiTemplate.Core.Entities;
 
 namespace ShadyNagy.ApiTemplate.Core.Specifications;
-public class CityByIdSpec : Specification<City>, ISingleResultSpecification
+public sealed class CityByIdSpec : Specification<City>, ISingleResultSpecification
 {
-  public CityByIdSpec(int id)
+  public CityByIdSpec(CityFilter filter)
   {
+    if (!filter.IsTrackingEnabled)
+    {
+      Query
+        .AsNoTracking();
+    }
+
+    if (filter.LoadChildren)
+    {
+      Query
+        .Include(c => c.CityTranslations)
+          .ThenInclude(c => c.LanguageId == filter.LanguageId);
+    }
+
     Query
-    .AsNoTracking()
-    .Where(x => x.Id == id);
+      .Where(c => c.Id == filter.Id);
   }
 }

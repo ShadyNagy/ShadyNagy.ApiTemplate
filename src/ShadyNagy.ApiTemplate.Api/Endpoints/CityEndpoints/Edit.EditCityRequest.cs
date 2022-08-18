@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using ShadyNagy.ApiTemplate.Api.Dtos;
 
 namespace ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
 
@@ -9,6 +11,6 @@ public class EditCityRequest
   [Required]
   public int Id { get; set; }
   [Required]
-  public string Name { get; set; } = string.Empty;
   public string? CountryId { get; set; }
+  public List<CityTranslationDto> CityTranslations { get; set; } = new List<CityTranslationDto>();
 }

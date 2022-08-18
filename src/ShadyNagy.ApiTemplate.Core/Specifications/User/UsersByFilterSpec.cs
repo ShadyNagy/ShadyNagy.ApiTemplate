@@ -4,9 +4,9 @@ using ShadyNagy.ApiTemplate.Core.Entities;
 using ShadyNagy.ApiTemplate.Core.Specifications.Helpers;
 
 namespace ShadyNagy.ApiTemplate.Core.Specifications;
-public sealed class CountriesByFilterSpec : Specification<Country>
+public sealed class UsersByFilterSpec : Specification<User>
 {
-  public CountriesByFilterSpec(CountryFilter filter)
+  public UsersByFilterSpec(UserFilter filter)
   {
     if (!filter.IsTrackingEnabled)
     {
@@ -14,16 +14,10 @@ public sealed class CountriesByFilterSpec : Specification<Country>
         .AsNoTracking();
     }
 
-    if (!string.IsNullOrEmpty(filter.Name))
-    {
-      Query
-        .Where(c => c.CountryTranslations.Any(t => t.Name == filter.Name));
-    }
-
     if (filter.LoadChildren)
     {
       Query
-        .Include(c => c.CountryTranslations);
+        .Include(u => u.UserInfo);
     }
 
     if (filter.IsPagingEnabled)
@@ -34,6 +28,6 @@ public sealed class CountriesByFilterSpec : Specification<Country>
     }
 
     Query
-      .OrderBy(c => c.CountryTranslations.FirstOrDefault(t => t.LanguageId == filter.LanguageId)!.Name);
+      .OrderBy(u => u.Username);
   }
 }

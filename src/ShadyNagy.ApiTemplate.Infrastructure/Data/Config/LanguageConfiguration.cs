@@ -1,15 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShadyNagy.ApiTemplate.Core.Entities;
-using ShadyNagy.ApiTemplate.Infrastructure.Data.Constants;
 
 namespace ShadyNagy.ApiTemplate.Infrastructure.Data.Config;
-public class CountryConfiguration : IEntityTypeConfiguration<Country>
+public class LanguageConfiguration : IEntityTypeConfiguration<Language>
 {
-  public void Configure(EntityTypeBuilder<Country> builder)
+  public void Configure(EntityTypeBuilder<Language> builder)
   {
     builder
-      .ToTable("Countries", "Lockup")
+      .ToTable("Languages", "Lockup")
       .HasKey(x => x.Id);
 
     builder
@@ -20,13 +19,12 @@ public class CountryConfiguration : IEntityTypeConfiguration<Country>
     builder
       .Property(p => p.Name)
       .HasColumnName("Name")
-      .HasMaxLength(DatabaseColumnsWidth.NAME)
       .IsRequired();
 
     builder
-      .HasMany(c => c.CountryTranslations)
-      .WithOne(t => t.Country)
-      .HasForeignKey(t => t.CountryId)
+      .HasMany(l => l.CityTranslations)
+      .WithOne(t => t.Language)
+      .HasForeignKey(t => t.LanguageId)
       .OnDelete(DeleteBehavior.ClientSetNull);
   }
 }

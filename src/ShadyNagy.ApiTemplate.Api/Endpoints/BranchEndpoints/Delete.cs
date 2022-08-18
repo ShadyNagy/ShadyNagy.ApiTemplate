@@ -32,8 +32,13 @@ public class Delete : EndpointBaseAsync
   ]
   public override async Task<ActionResult<bool>> HandleAsync(int id, CancellationToken cancellationToken = default)
   {
-    var spec = new BranchByIdSpec(id);
-    var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+    var filter = new BranchFilter
+    {
+      Id = id
+    };
+    var spec = new BranchByIdSpec(filter);
+   
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();

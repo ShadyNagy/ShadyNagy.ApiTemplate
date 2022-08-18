@@ -35,8 +35,13 @@ public class Edit : EndpointBaseAsync
   ]
   public override async Task<ActionResult<CityDto>> HandleAsync([FromBody] EditCityRequest cityDto, CancellationToken cancellationToken = default)
   {
-    var spec = new CityByIdSpec(cityDto.Id);
-    var entity = await _repository.GetBySpecAsync(spec, cancellationToken);
+    var filter = new CityFilter
+    {
+      Id = cityDto.Id
+    };
+    var spec = new CityByIdSpec(filter);
+
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
     if (entity == null)
     {
       return NotFound();

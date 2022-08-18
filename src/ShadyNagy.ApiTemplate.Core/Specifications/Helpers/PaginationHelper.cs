@@ -1,6 +1,4 @@
-﻿using ShadyNagy.ApiTemplate.Core.Specifications.Filters;
-
-namespace ShadyNagy.ApiTemplate.Core.Specifications.Helpers;
+﻿namespace ShadyNagy.ApiTemplate.Core.Specifications.Helpers;
 public static class PaginationHelper
 {
   public static int DefaultPage => 1;

@@ -8,6 +8,7 @@ public class Country : BaseEntity<string>, IAggregateRoot
 {
   public string Name { get; set; } = string.Empty;
   public virtual List<City> Cities { get; set; } = new List<City>();
+  public virtual List<CountryTranslation> CountryTranslations { get; set; } = new List<CountryTranslation>();
 
   public void AddCity(City city)
   {

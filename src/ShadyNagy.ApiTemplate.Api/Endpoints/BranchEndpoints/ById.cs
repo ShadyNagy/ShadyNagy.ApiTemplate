@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShadyNagy.ApiTemplate.Api.Dtos;
 using ShadyNagy.ApiTemplate.Core.Entities;
+using ShadyNagy.ApiTemplate.Core.Specifications;
 using ShadyNagy.ApiTemplate.SharedKernel.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -34,7 +35,19 @@ public class ById : EndpointBaseAsync
   ]
   public override async Task<ActionResult<BranchDto>> HandleAsync(int id, CancellationToken cancellationToken = default)
   {
-    var entity = await _repository.GetByIdAsync(id, cancellationToken);
+    var filter = new BranchFilter
+    {
+      Id = id,
+      IsTrackingEnabled = false
+    };
+    var spec = new BranchByIdSpec(filter);
+
+    var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
+    if (entity == null)
+    {
+      return NotFound();
+    }
+
     var response = _mapper.Map<BranchDto>(entity);
 
     return Ok(response);

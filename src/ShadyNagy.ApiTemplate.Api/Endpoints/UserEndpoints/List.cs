@@ -34,7 +34,13 @@ public class List : EndpointBaseAsync
   ]
   public override async Task<ActionResult<ListResponse<UserDto>>> HandleAsync(CancellationToken cancellationToken = default)
   {
-    var spec = new UsersOrderByNameSpec();
+    var filter = new UserFilter
+    {
+      IsTrackingEnabled = false,
+      IsPagingEnabled = false,
+    };
+    var spec = new UsersByFilterSpec(filter);
+
     var entities = await _repository.ListAsync(spec, cancellationToken);
     var responseData = _mapper.Map<List<UserDto>>(entities);
     var response = new ListResponse<UserDto>(responseData);

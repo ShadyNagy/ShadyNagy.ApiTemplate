@@ -7,6 +7,7 @@ using ShadyNagy.ApiTemplate.Api.Endpoints.CityEndpoints;
 using ShadyNagy.ApiTemplate.TestsSharedKernel;
 using Shouldly;
 using Xunit;
+using System.Linq;
 
 namespace ShadyNagy.ApiTemplate.FunctionalTests.Endpoints.CityEndpoints;
 
@@ -27,7 +28,7 @@ public class ListTests : IClassFixture<CustomWebApplicationFactory<ApiMarker>>
 
     result.Data.Count.ShouldBeGreaterThan(0);
     result.TotalCount.ShouldBe(1);
-    result.Data[0].Name.ShouldBe(SeedData.TestCity1.Name);
+    result.Data[0].Name.ShouldBe(SeedData.TestCity1.CityTranslations.FirstOrDefault()!.Name);
   }
 }
 

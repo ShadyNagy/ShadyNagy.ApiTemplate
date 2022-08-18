@@ -2,7 +2,7 @@
 using ShadyNagy.ApiTemplate.Api.Dtos;
 using ShadyNagy.ApiTemplate.Api.Endpoints.CountryEndpoints;
 using ShadyNagy.ApiTemplate.Core.Entities;
-using ShadyNagy.ApiTemplate.Core.Specifications.Filters;
+using ShadyNagy.ApiTemplate.Core.Specifications;
 
 namespace ShadyNagy.ApiTemplate.Api.MappingProfiles;
 

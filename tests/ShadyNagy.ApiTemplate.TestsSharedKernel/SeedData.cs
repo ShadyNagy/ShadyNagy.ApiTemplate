@@ -22,7 +22,13 @@ public static class SeedData
   public static readonly City TestCity1 = new City
   {
     CountryId = "EG",
-    Name = "Cairo"
+    CityTranslations = new List<CityTranslation>
+    {
+       new CityTranslation
+       {
+         Name = "Cairo"
+       }
+    }    
   };
 
   public static void Initialize(IServiceProvider serviceProvider)
