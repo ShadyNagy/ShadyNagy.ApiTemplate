@@ -1,4 +1,5 @@
-﻿using Ardalis.Specification;
+﻿using System.Linq;
+using Ardalis.Specification;
 using ShadyNagy.ApiTemplate.Core.Entities;
 
 namespace ShadyNagy.ApiTemplate.Core.Specifications;
@@ -15,8 +16,7 @@ public sealed class CityByIdSpec : Specification<City>, ISingleResultSpecificati
     if (filter.LoadChildren)
     {
       Query
-        .Include(c => c.CityTranslations)
-          .ThenInclude(c => c.LanguageId == filter.LanguageId);
+        .Include(c => c.CityTranslations.Where(t => t.LanguageId == filter.LanguageId));
     }
 
     Query

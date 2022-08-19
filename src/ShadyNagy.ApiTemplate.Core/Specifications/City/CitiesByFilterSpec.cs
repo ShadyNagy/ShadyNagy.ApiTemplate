@@ -23,7 +23,7 @@ public sealed class CitiesByFilterSpec : Specification<City>
     if (filter.LoadChildren)
     {
       Query
-        .Include(c => c.CityTranslations);
+        .Include(c => c.CityTranslations.Where(t => t.LanguageId == filter.LanguageId));
     }      
 
     if (filter.IsPagingEnabled)

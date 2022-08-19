@@ -23,7 +23,7 @@ public sealed class CountriesByFilterSpec : Specification<Country>
     if (filter.LoadChildren)
     {
       Query
-        .Include(c => c.CountryTranslations);
+        .Include(c => c.CountryTranslations.Where(t => t.LanguageId == filter.LanguageId));
     }
 
     if (filter.IsPagingEnabled)
