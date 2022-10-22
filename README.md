@@ -3,6 +3,9 @@
 [![ShadyNagy.ApiTemplate on NuGet](https://img.shields.io/nuget/v/ShadyNagy.ApiTemplate?label=ShadyNagy.ApiTemplate)](https://www.nuget.org/packages/ShadyNagy.ApiTemplate/)
 [![NuGet](https://img.shields.io/nuget/dt/ShadyNagy.ApiTemplate)](https://www.nuget.org/packages/ShadyNagy.ApiTemplate)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/ShadyNagy/Utilities/blob/master/LICENSE)
+    <a href="https://www.paypal.me/shadynagy" alt="paypal">
+        <img src="https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal" />
+    </a>
 
 # ShadyNagy.ApiTemplate
 
